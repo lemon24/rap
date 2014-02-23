@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from setuptools import setup
 
 import rap
@@ -9,7 +7,6 @@ setup(
     version=rap.__version__,
     description="Register Assembly Programming",
     long_description=open("README.rst").read(),
-
     classifiers=[
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python :: 3",
@@ -22,4 +19,10 @@ setup(
     url='https://github.com/lemon24/rap',
     license='BSD',
     packages=['rap'],
+    entry_points = {
+        'console_scripts': [
+            'rap = rap:main',
+        ],
+    },
 )
+
