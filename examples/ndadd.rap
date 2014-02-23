@@ -1,0 +1,22 @@
+
+# program 4: Non-destructive ADD [1,2,3]
+
+1       deb     3   1   2
+2       deb     4   2   3
+
+3       deb     1   4   6
+4       inc     3   5
+5       inc     4   3
+
+6       deb     4   7   8
+7       inc     1   6
+
+8       deb     2   9   11
+9       inc     3   10
+10      inc     4   8
+
+11      deb     4   12  13
+12      inc     2   11
+
+13      end
+

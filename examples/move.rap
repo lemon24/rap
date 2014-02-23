@@ -1,0 +1,8 @@
+
+# program 2: MOVE [4,5]
+
+1       deb     5   1   2
+2       deb     4   3   4
+3       inc     5   2
+4       end
+
