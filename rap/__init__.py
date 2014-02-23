@@ -9,7 +9,7 @@ http://sites.tufts.edu/rodrego/
 
 
 """
-
+__version__ = '0.1dev'
 
 import collections
 import re

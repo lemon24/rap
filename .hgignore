@@ -1,0 +1,7 @@
+syntax: glob
+
+__pycache__
+docs/_build
+dist
+rap.egg-info
+
