@@ -23,10 +23,14 @@ class ProcessingUnit:
     def __init__(self):
         self.registers = self.registers_cls()
 
-    def run_program(self, program):
-        next_step = program.start
+    def run_program(self, program, next_step, trace=None):
         while next_step is not None:
             instruction = program[next_step]
+            # TODO: store the current instruction on self
+            if trace:
+                trace(self)
             next_step = instruction.run(self.registers)
+
+
 
 

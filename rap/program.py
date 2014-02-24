@@ -178,8 +178,8 @@ class Program(collections.OrderedDict):
 
             program[expected_step] = instruction
 
-        if program.start is None:
-            program.start = expected_step
+            if program.start is None:
+                program.start = expected_step
 
         return program
 
