@@ -91,14 +91,27 @@ class Formatter(string.Formatter):
 
 
 def make_parser():
-    # TODO: Add help and description strings.
-    parser = argparse.ArgumentParser('rap')
-    parser.add_argument('file', type=argparse.FileType('r'))
-    parser.add_argument('-i', '--input', metavar='input', type=parse_input)
-    parser.add_argument('-o', '--output', metavar='format', nargs='?', const=True)
-    parser.add_argument('-t', '--trace', metavar='format', nargs='?', const=True)
-    parser.add_argument('-s', '--start', metavar='step', type=int)
-    parser.add_argument('-c', '--check', action='store_true')
+    parser = argparse.ArgumentParser('rap',
+        description="Register Assembly Programming")
+    parser.add_argument('file', type=argparse.FileType('r'),
+        help="a file containing a RAP program")
+    parser.add_argument('-i', '--input', metavar='input', type=parse_input,
+        help="set the initial register values (e.g. \"a: 1, b: 2\")")
+    parser.add_argument('-o', '--output', metavar='format', nargs='?',
+        const=True, help="""
+            print the register values after the program ends; if format is
+            given, register names between braces will be replaced with
+            their values (e.g. "a: {a}")
+        """)
+    parser.add_argument('-t', '--trace', metavar='format', nargs='?',
+        const=True, help="""
+            print the register values before every executed instruction;
+            behaves like --output
+        """)
+    parser.add_argument('-s', '--start', metavar='step', type=int,
+        help="start from instruction step instead of the beginning")
+    parser.add_argument('-c', '--check', action='store_true',
+        help="only check the syntax (don't execute the program)")
     return parser
 
 
@@ -145,10 +158,7 @@ def main(args=None):
         parser.error("step {} not in program".format(args.start))
 
     trace = make_printer(args.trace)
-    if trace and args.output is True:
-        output = trace
-    else:
-        output = make_printer(args.output)
+    output = make_printer(args.output)
 
     pu = ProcessingUnit()
     pu.registers.update(args.input)
